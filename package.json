@@ -1,0 +1,24 @@
+{
+  "name": "flatdna",
+  "version": "1.0.0",
+  "description": "Flatmates.com Analytics Application",
+  "main": "requestFMData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/deanvollebregt/FlatDNA.git"
+  },
+  "author": "Dean Vollebregt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/deanvollebregt/FlatDNA/issues"
+  },
+  "homepage": "https://gitlab.com/deanvollebregt/FlatDNA#README",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "dev": "^0.1.3",
+    "request": "^2.83.0"
+  }
+}
