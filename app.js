@@ -1,27 +1,38 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const Data = require('./services/flatmatesData');
-// parse incoming requests
+const fmData = require('./services/flatmatesData');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
-//app.use(express.static('public'));
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function (req, res, next) {
+app.get('/',
 
-  res.sendFile(__dirname + '/index.html');
+  function (req, res) {
+    res.sendFile(__dirname + '/index.html');
 
 });
 
-app.post('/submit-data-area', function(req, res, next) {
+app.post('/submit-data-area',
+
+  async function(req, res, next) {
+
+    try {
+        let list = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
+          return res.send(list);
+    } catch(err){
+      next(err);
+    }
 
 
-  let list = Data.flatmatesData(req.body.suburb, req.body.postcode);
 
-  res.send('You sent "' + req.body.suburb  + list + '".');
+      //return res.send('You sent "' + req.body.suburb  + list + '".');
+
+
+
+
+
 });
 
 app.listen(8080, function() {
