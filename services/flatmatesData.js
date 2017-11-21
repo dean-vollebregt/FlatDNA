@@ -2,9 +2,11 @@ const request = require('request');
 const cheerio = require('cheerio');
 
 
-function requestFMData() {
+function flatmatesData(suburb, postcode) {
 
-  request('https://flatmates.com.au/rooms/unley-5061', function (error, response, html) {
+  let searchUrl = `https://flatmates.com.au/rooms/${suburb}-${postcode}`;
+
+  request(searchUrl, function (error, response, html) {
     let $ = cheerio.load(html);
 
     if (!error && response.statusCode === 200) {
@@ -34,11 +36,13 @@ function requestFMData() {
       });
 
       console.log(list);
-
+      return list;
 
     }
   });
 
 }
 
-requestFMData();
+//requestFMData('unley', '5061');
+
+module.exports.flatmatesData = flatmatesData;
