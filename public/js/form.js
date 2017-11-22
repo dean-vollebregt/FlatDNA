@@ -9,7 +9,7 @@ const postcodeInput = document.getElementById("postcode");
 
 // Can only contain letters a-z in lowercase
 function isValidSuburb(suburb) {
-  return /^[a-z]+$/.test(suburb);
+  return /^([a-z]+\s?|[a-z]+\s?[a-z]+|[a-z]+\s?[a-z]+\s?[a-z]+)$/i.test(suburb);
 }
 
 
@@ -25,9 +25,9 @@ function isValidPostcode(postcode) {
  * 
  */
 
-// function formatPostcode(text) {
-//   const regex = /^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*$/;
-//   return text.replace(regex, '($1) $2-$3');
+// function formatSuburb(text) {
+//   const regex = /\s+/g;
+//   return text.replace(regex, '-').toLowerCase();
 // }
 
 /**
@@ -57,10 +57,10 @@ function createListener(validator) {
 
 suburbInput.addEventListener("input", createListener(isValidSuburb));
 
-postcodeInput.addEventListener("input", createListener(isValidPostcode));
-
-// postcodeInput.addEventListener("blur", e => {
-//   e.target.value = formatPostcode(e.target.value);
+// suburbInput.addEventListener("blur", e => {
+//   e.target.value = formatSuburb(e.target.value);
 // });
+
+postcodeInput.addEventListener("input", createListener(isValidPostcode));
 
 

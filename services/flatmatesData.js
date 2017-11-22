@@ -35,7 +35,9 @@ function parseHTML(html){
 
 async function flatmatesData(suburb, postcode) {
 
-  let searchUrl = `https://flatmates.com.au/rooms/${suburb}-${postcode}`;
+  let suburbFormatted = suburb.replace(/\s+/g, '-').toLowerCase();
+
+  let searchUrl = `https://flatmates.com.au/rooms/${suburbFormatted}-${postcode}`;
 
   try {
     let html = await request.get(searchUrl);
@@ -44,6 +46,8 @@ async function flatmatesData(suburb, postcode) {
   } catch (err) {
     console.log('Got an error:', err.message)
   }
+
+
 
 }
 
