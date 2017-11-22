@@ -1,12 +1,11 @@
 const request = require('request-promise');
 const cheerio = require('cheerio');
 
-
 function parseHTML(html){
 
   let $ = cheerio.load(html);
 
-    let list = [];
+    let listOfRooms = [];
     $('div[data-reactid="26"]').find('.content-column').each(function(i, element) {
 
       let price = $(element).find('.ribbon').text().match(/(\d{3})/g);
@@ -24,13 +23,14 @@ function parseHTML(html){
         bathroom : parseInt(bathroom),
         occupant : parseInt(occupant),
         url : url,
-        image : image
+        image : image,
+        flatmates : occupant > bedroom ? occupant : bedroom
       };
 
-      list.push(houseData);
+      listOfRooms.push(houseData);
     });
 
-    return list;
+    return listOfRooms;
 }
 
 async function flatmatesData(suburb, postcode) {
@@ -39,14 +39,12 @@ async function flatmatesData(suburb, postcode) {
 
   try {
     let html = await request.get(searchUrl);
-    let result = parseHTML(html);
-      return (result);
+    let parsedHtml = parseHTML(html);
+      return (parsedHtml);
   } catch (err) {
     console.log('Got an error:', err.message)
   }
 
 }
-
-//flatmatesData('unley', '5061');
 
 module.exports.flatmatesData = flatmatesData;

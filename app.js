@@ -19,19 +19,11 @@ app.post('/submit-data-area',
   async function(req, res, next) {
 
     try {
-        let list = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
-          return res.send(list);
+        let listOfRoomObjects = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
+          return res.send(listOfRoomObjects);
     } catch(err){
       next(err);
     }
-
-
-
-      //return res.send('You sent "' + req.body.suburb  + list + '".');
-
-
-
-
 
 });
 
