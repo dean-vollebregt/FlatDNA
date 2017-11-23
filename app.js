@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const fmData = require('./services/flatmatesData');
+const OLS = require('./services/ordinaryLeastSquares');
+const prediction = require('./services/predictPriceAndRank');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +22,10 @@ app.post('/submit-data-area',
 
     try {
         let listOfRoomObjects = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
-          return res.send(listOfRoomObjects);
+        let mlr = OLS.ordinaryLeastSquares(listOfRoomObjects);
+        let rankedRooms = prediction.predictPriceAndRank(mlr, listOfRoomObjects);
+
+          return res.send(rankedRooms);
     } catch(err){
       next(err);
     }

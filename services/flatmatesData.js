@@ -25,7 +25,8 @@ function parseHTML(html){
         url : url,
         image : image,
         flatmates : parseInt(occupant > bedroom ? occupant : bedroom),
-        predictedPrice: null
+        predictedPrice: null,
+        difference : null
       };
 
       listOfRooms.push(houseData);
@@ -37,9 +38,7 @@ function parseHTML(html){
 async function flatmatesData(suburb, postcode) {
 
   let suburbFormatted = suburb.replace(/\s+/g, '-').toLowerCase();
-
   let searchUrl = `https://flatmates.com.au/rooms/${suburbFormatted}-${postcode}`;
-
   try {
     let html = await request.get(searchUrl);
     let parsedHtml = parseHTML(html);
@@ -47,9 +46,6 @@ async function flatmatesData(suburb, postcode) {
   } catch (err) {
     console.log('Got an error:', err.message)
   }
-
-
-
 }
 
 module.exports.flatmatesData = flatmatesData;
