@@ -24,7 +24,8 @@ function parseHTML(html){
         occupant : parseInt(occupant),
         url : url,
         image : image,
-        flatmates : occupant > bedroom ? occupant : bedroom
+        flatmates : parseInt(occupant > bedroom ? occupant : bedroom),
+        predictedPrice: null
       };
 
       listOfRooms.push(houseData);
