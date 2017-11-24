@@ -1,16 +1,23 @@
-body {
-  background: #384047;
-  font-family: sans-serif;
-  font-size: 10px
+#formDiv
+{
+  display: block;
+  text-align: center;
 }
-form, .output {
-  background: #fff;
+
+
+.searchForm {
+
+  display: inline-block;
+  text-align: center;
+  background: #AAA;
   padding: 4em 4em 2em;
   max-width: 400px;
-  margin: 100px auto 0;
   box-shadow: 0 0 1em #222;
   border-radius: 5px;
+  margin : 0 auto;
+
 }
+
 p {
   margin: 0 0 3em 0;
   position: relative;
@@ -25,6 +32,7 @@ p.error {
 .error input {
   color: red;
 }
+
 label {
   display: block;
   font-size: 1.6em;
@@ -49,7 +57,7 @@ input[type="text"]:focus,
 input[type="password"]:focus {
   background: #fff
 }
-span {
+.formSpan {
   border-radius: 5px;
   display: none;
   font-size: 1.3em;

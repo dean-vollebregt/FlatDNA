@@ -12,8 +12,7 @@ function isValidSuburb(suburb) {
   return /^([a-z]+\s?|[a-z]+\s?[a-z]+|[a-z]+\s?[a-z]+\s?[a-z]+)$/i.test(suburb);
 }
 
-
-// The telephone number must be in the format of (555) 555-5555
+// Can only contain
 function isValidPostcode(postcode) {
   return /^\d{4}$/.test(postcode);
 }
@@ -52,7 +51,7 @@ function createListener(validator) {
     const showTip = text !== "" && !valid;
     const tooltip = e.target.nextElementSibling;
     showOrHideTip(showTip, tooltip);
-  };
+  }
 }
 
 suburbInput.addEventListener("input", createListener(isValidSuburb));
