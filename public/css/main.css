@@ -230,10 +230,14 @@ nav a, nav a:visited
 }
 
 /* selected nav link */
+nav a:target
+{
+  color: #32673f
+}
+
 nav a.selected, nav a:hover
 {
   color: #32673f
 }
- 
 
 

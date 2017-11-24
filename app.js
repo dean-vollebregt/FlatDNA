@@ -1,22 +1,39 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const nunjucks = require('nunjucks');
 const fmData = require('./services/flatmatesData');
 const OLS = require('./services/ordinaryLeastSquares');
 const prediction = require('./services/predictPriceAndRank');
 
 const render = require('./services/render');
 
+// parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// serve static files from /public
 app.use(express.static(__dirname + '/public'));
 
+// view engine setup
+app.engine( 'html', nunjucks.render);
+app.set( 'view engine', 'html') ;
+app.set('views', __dirname + '/public/html');
+
 app.get('/',
-
   function (req, res) {
-    res.sendFile(__dirname + '/index.html');
-
+    res.render('index');
 });
+
+app.get('/search',
+  function (req, res) {
+    res.render('search');
+});
+
+app.get('/result',
+  function (req, res) {
+    res.render('result');
+  });
 
 app.post('/html/search',
 
@@ -26,8 +43,8 @@ app.post('/html/search',
         let listOfRoomObjects = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
         let mlr = OLS.ordinaryLeastSquares(listOfRoomObjects);
         let rankedRooms = prediction.predictPriceAndRank(mlr, listOfRoomObjects);
-        let html = render.renderHtml(rankedRooms);
-          return res.send(html);
+        //let html = render.renderHtml(rankedRooms);
+          return res.render('result', rankedRooms);
     } catch(err){
       next(err);
     }
