@@ -16,12 +16,13 @@
         <h2>Share House Room Price Estimator</h2>
     </a>
     <nav>
-        <ul>
-            {% block nav %}
-
-            {% endblock %}
+        <ul class="navItems">
+            <li><a href="/">Home</a></li>
+            <li><a href="search">Search</a></li>
+            <li><a href="result">Result</a></li>
         </ul>
     </nav>
+
 </header>
 <body>
 {% block content %}
@@ -30,6 +31,7 @@
 <footer>
     <p>&copy; 2017 Dean V.</p>
 </footer>
+<script src="../js/layout.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/form.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
