@@ -6,7 +6,6 @@ const fmData = require('./services/flatmatesData');
 const OLS = require('./services/ordinaryLeastSquares');
 const prediction = require('./services/predictPriceAndRank');
 
-const render = require('./services/render');
 
 // parse incoming requests
 app.use(bodyParser.json());
@@ -35,7 +34,7 @@ app.get('/result',
     res.render('result');
   });
 
-app.post('/html/search',
+app.post('/search',
 
   async function(req, res, next) {
 
@@ -43,12 +42,10 @@ app.post('/html/search',
         let listOfRoomObjects = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
         let mlr = OLS.ordinaryLeastSquares(listOfRoomObjects);
         let rankedRooms = prediction.predictPriceAndRank(mlr, listOfRoomObjects);
-        //let html = render.renderHtml(rankedRooms);
           return res.render('result', rankedRooms);
     } catch(err){
       next(err);
     }
-
 });
 
 app.listen(8080, function() {
