@@ -6,7 +6,7 @@ function parseHTML(html){
   let $ = cheerio.load(html);
 
     let listOfRooms = [];
-    $('div[data-reactid="26"]').find('.content-column').each(function(i, element) {
+    $('.search-results').eq(0).find('.content-column').each(function(i, element) {
 
       let price = $(element).find('.ribbon').text().match(/(\d{3})/g);
       let billsIncluded = $(element).find('.ribbon').text().match(/inc/g) ? 1 : 0;
