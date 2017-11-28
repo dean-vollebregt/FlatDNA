@@ -1,35 +1,21 @@
 {% extends "public/html/layout.html" %}
 
 {% block content %}
+
 <section>
     <ul id="gallery">
+        {% for room in rankedRoomArray %}
         <li>
-            <a href="img/numbers-01.jpg">
-                <img src="img/numbers-01.jpg" alt="">
-                <p>Experimentation with color and texture.</p>
+            <a href="{{ room.url }}">
+                <img src="{{ room.image }}" alt="">
+                <p>Price: {{ room.price}}</p>
+                <p>Bedrooms: {{ room.bedroom}}</p>
+                <p>Bathrooms: {{ room.bathroom}}</p>
+                <p>Housemates: {{ room.flatmates}}</p>
             </a>
         </li>
-        <li>
-            <a href="img/numbers-02.jpg">
-                <img src="img/numbers-02.jpg" alt="">
-                <p>Playing with blending modes in Photoshop.</p>
-            </a>
-        </li><li>
-        <a href="img/numbers-06.jpg">
-            <img src="img/numbers-06.jpg" alt="">
-            <p>Trying to create an 80's style of glows.</p>
-        </a>
-    </li><li>
-        <a href="img/numbers-09.jpg">
-            <img src="img/numbers-09.jpg" alt="">
-            <p>Drips created using photoshop brushes.</p>
-        </a>
-    </li><li>
-        <a href="img/numbers-12.jpg">
-            <img src="img/numbers-12.jpg" alt="">
-            <p>Creating shapes using repition.</p>
-        </a>
-    </li>
+        {% endfor %}
     </ul>
 </section>
 {% endblock %}
+

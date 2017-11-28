@@ -6,7 +6,6 @@ const fmData = require('./services/flatmatesData');
 const OLS = require('./services/ordinaryLeastSquares');
 const prediction = require('./services/predictPriceAndRank');
 
-
 // parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,24 +28,30 @@ app.get('/search',
     res.render('search');
 });
 
-app.get('/result',
-  function (req, res) {
-    res.render('result');
-  });
 
-app.post('/search',
+// app.get('/result',
+//   function (req, res) {
+//     res.render('result');
+// });
+
+
+app.post('/result',
 
   async function(req, res, next) {
 
     try {
-        let listOfRoomObjects = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
-        let mlr = OLS.ordinaryLeastSquares(listOfRoomObjects);
-        let rankedRooms = prediction.predictPriceAndRank(mlr, listOfRoomObjects);
-          return res.render('result', rankedRooms);
+      let listOfRoomObjects = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
+      let mlr = OLS.ordinaryLeastSquares(listOfRoomObjects);
+      let rankedRooms = prediction.predictPriceAndRank(mlr, listOfRoomObjects);
+      console.log(rankedRooms);
+      return res.render('result', { rankedRoomArray: rankedRooms});
+
     } catch(err){
       next(err);
     }
+
 });
+
 
 app.listen(8080, function() {
   console.log('Server running at http://127.0.0.1:8080/');
