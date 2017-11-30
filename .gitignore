@@ -1,0 +1,21 @@
+
+# Created by https://www.gitignore.io/api/node
+
+### Node ###
+
+
+# Dependency directories
+/node_modules/
+
+
+# devops file
+/devops.txt
+
+# Ignore workspace config file
+.idea/workspace.xml
+.idea/inspectionProfiles/
+
+
+# End of https://www.gitignore.io/api/node
+
+

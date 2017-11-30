@@ -8,11 +8,16 @@
         <li>
             <a href="{{ room.url }}">
                 <img src="{{ room.image }}" alt="">
-                <div id ="alignRight">
-                    <p>Price: {{ room.price}} </p>
+                <div id ="houseStats">
+
                     <p>Bedrooms: {{ room.bedroom}} </p>
                     <p>Bathrooms: {{room.bathroom}} </p>
                     <p>Housemates: {{room.flatmates}}</p>
+                </div>
+                <div id ="priceStats">
+                    <p>Price: {{ room.price}} </p>
+                    <p>Estimated Price: {{ room.predictedPrice }} </p>
+                    <p>Difference: {{ room.difference }} </p>
                 </div>
             </a>
         </li>
