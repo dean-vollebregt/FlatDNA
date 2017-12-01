@@ -12,8 +12,7 @@
 /devops.txt
 
 # Ignore workspace config file
-.idea/workspace.xml
-.idea/inspectionProfiles/
+/.idea/
 
 
 # End of https://www.gitignore.io/api/node
