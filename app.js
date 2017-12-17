@@ -29,14 +29,6 @@ app.get('/search',
     res.render('search');
 });
 
-
-// app.get('/result',
-//   function (req, res) {
-//     res.render('result');
-// });
-
-
-
 app.post('/result',
 
   async function(req, res, next) {
