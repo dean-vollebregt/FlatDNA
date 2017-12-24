@@ -1,7 +1,6 @@
 {% extends "public/html/layout.html" %}
 
 {% block content %}
-
 <section>
     <ul id="gallery">
         {% for room in rankedRoomArray %}
@@ -9,10 +8,9 @@
             <a href="{{ room.url }}">
                 <img src="{{ room.image }}" alt="">
                 <div id ="houseStats">
-
-                    <p>Bedrooms: {{ room.bedroom}} </p>
+                    <p>Bedrooms: {{ room.flatmates}} </p>
                     <p>Bathrooms: {{room.bathroom}} </p>
-                    <p>Housemates: {{room.flatmates}}</p>
+                    <p>Bills Included: {{ room.billsIncluded | replace("0", "no") | replace("1", "yes") }} </p>
                 </div>
                 <div id ="priceStats">
                     <p>Price: {{ room.price}} </p>
