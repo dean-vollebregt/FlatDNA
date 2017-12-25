@@ -11,6 +11,9 @@
 # devops file
 /devops.txt
 
+# Test Data
+/testData.js
+
 # Ignore workspace config file
 /.idea/
 

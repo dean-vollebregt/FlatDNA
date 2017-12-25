@@ -7,7 +7,9 @@
         <li>
             <div id = "container">
                 <div id ="houseImage">
-                    <img src="{{ room.image }}" alt="">
+                    <a href = "{{ room.url }}">
+                        <img src="{{ room.image }}" alt="">
+                    </a>
                 </div>
                 <div id ="houseStats">
                     <p>Bedrooms: {{ room.flatmates}} </p>
