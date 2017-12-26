@@ -3,8 +3,19 @@
 /********************************
 PAGE: SMALL DEVICE
 *********************************/
-@media screen and (max-width: 481px)
-{
+@media screen and (max-width: 481px){
+
+  /********************************
+  PAGE: Home
+  *********************************/
+  #intro{
+    /*margin-left: 5em;*/
+    text-align: center;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+
+
   /********************************
   PAGE: Result
   *********************************/
@@ -36,6 +47,15 @@ PAGE: SMALL DEVICE
   #housePrice {
     float:right;
     width: 50%;
+  }
+
+  /********************************
+  PAGE: Home
+  *********************************/
+  #resultNF{
+    text-align: center;
+    margin-left: 2em;
+    margin-right: 2em;
   }
 
 }
@@ -85,6 +105,16 @@ PAGE: SMALL DEVICE
   }
 
   /********************************
+  PAGE: Home
+  *********************************/
+  #intro{
+    text-align: center;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+
+
+  /********************************
   PAGE: RESULT
   *********************************/
   #gallery
@@ -119,6 +149,17 @@ PAGE: SMALL DEVICE
     float: left;
     width:33%;
   }
+
+  /********************************
+  PAGE: Result Not Found
+  *********************************/
+  #resultNF{
+    text-align: center;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+
+
 
 }
 
