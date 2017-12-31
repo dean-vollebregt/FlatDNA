@@ -40,12 +40,16 @@ async function flatmatesData(suburb, postcode) {
   let suburbFormatted = suburb.replace(/\s+/g, '-').toLowerCase();
   let searchUrl = `https://flatmates.com.au/rooms/${suburbFormatted}-${postcode}`;
   try {
-    let html = await request.get(searchUrl);
-    let parsedHtml = parseHTML(html);
-      return (parsedHtml);
+    let rawHTML = await request.get(searchUrl);
+      return (rawHTML);
   } catch (err) {
     console.log('Got an error:', err.message)
   }
 }
 
-module.exports.flatmatesData = flatmatesData;
+module.exports = {
+  parseHTML,
+  flatmatesData
+};
+
+

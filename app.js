@@ -34,13 +34,13 @@ app.get('/result',
     res.render('resultNF');
 });
 
-
 app.post('/result',
 
   async function(req, res, next) {
 
     try {
-      let listOfRoomObjects = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
+      let rawHTML = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
+      let listOfRoomObjects = fmData.parseHTML(rawHTML);
       let mlr = OLS.ordinaryLeastSquares(listOfRoomObjects);
       let rankedRooms = prediction.predictPriceAndRank(mlr, listOfRoomObjects);
       return res.render('result', { rankedRoomArray: rankedRooms});
