@@ -18,3 +18,4 @@ function ordinaryLeastSquares(listOfRoomObjects){
 module.exports.ordinaryLeastSquares = ordinaryLeastSquares;
 
 
+
