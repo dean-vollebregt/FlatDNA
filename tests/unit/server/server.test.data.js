@@ -242,16 +242,7 @@ const correctTestRankedRooms = [
     predictedPrice: '138.66',
     difference: '40.34' } ];
 
-
-  function getListOfRoomObjects() {
-    return listOfRoomObjects;
-  }
-
-  function getCorrectTestRankedRooms() {
-    return correctTestRankedRooms;
-  }
-
 module.exports = {
-    getListOfRoomObjects : getListOfRoomObjects(),
-    getCorrectTestRankedRooms : getCorrectTestRankedRooms()
+  listOfRoomObjects,
+  correctTestRankedRooms
 };

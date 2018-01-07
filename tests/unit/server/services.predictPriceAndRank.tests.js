@@ -1,16 +1,11 @@
 const prediction = require('../../../services/predictPriceAndRank');
 const OLS = require('../../../services/ordinaryLeastSquares');
-
-// Get test data
-const testData = require('../../../tests/unit/server/server.test.data');
-const listOfRoomObjects = testData.getListOfRoomObjects;
-const correctTestRankedRooms = testData.getCorrectTestRankedRooms;
-
+const listOfRoomObjects = require('../../../tests/unit/server/server.test.data').listOfRoomObjects;
+const correctTestRankedRooms = require('../../../tests/unit/server/server.test.data').correctTestRankedRooms;
 const expect = require('chai').expect;
 
-let mlr;
-
 describe('predictPriceAndRank', function() {
+  let mlr;
 
   before(function () {
      mlr = OLS.ordinaryLeastSquares(listOfRoomObjects);
