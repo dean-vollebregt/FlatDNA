@@ -41,8 +41,8 @@ app.post('/result',
     try {
       let rawHTML = await fmData.flatmatesData(req.body.suburb, req.body.postcode);
       let listOfRoomObjects = fmData.parseHTML(rawHTML);
-      console.log(listOfRoomObjects);
       let mlr = OLS.ordinaryLeastSquares(listOfRoomObjects);
+      console.log(mlr.predict);
       let rankedRooms = prediction.predictPriceAndRank(mlr, listOfRoomObjects);
       return res.render('result', { rankedRoomArray: rankedRooms});
 
