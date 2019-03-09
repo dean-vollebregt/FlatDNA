@@ -1,0 +1,130 @@
+AWSTemplateFormatVersion: 2010-09-09
+#https://s3-ap-southeast-2.amazonaws.com/flatdna-backend/cloudformation.yml
+
+Resources:
+  AWSLambdaFullAccessRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: flatDNALambdaFullAccessRole
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/AWSLambdaFullAccess'
+        - 'arn:aws:iam::aws:policy/AmazonSESFullAccess'
+
+  flatDNA:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      FunctionName: flatDNA
+      Handler: index.handler
+      Role: !GetAtt AWSLambdaFullAccessRole.Arn
+      Code:
+        S3Bucket: flatdna-backend
+        S3Key: flatdna-backend.zip
+      Runtime: nodejs8.10
+      Timeout: '20'
+      TracingConfig:
+        Mode: Active
+
+  APIflatDNAPermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName: !Ref flatDNA
+      Principal: apigateway.amazonaws.com
+
+  flatDNAAPI:
+    Type: 'AWS::ApiGateway::RestApi'
+    Properties:
+      Name: flatDNAAPI
+      Description: flatDNAAPI implementation
+
+  APIflatDNAResource:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      ParentId: !GetAtt
+        - flatDNAAPI
+        - RootResourceId
+      PathPart: suburb
+      RestApiId: !Ref flatDNAAPI
+
+  APIflatDNAPOST:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      ApiKeyRequired: false
+      AuthorizationType: "NONE"
+      HttpMethod: POST
+      RestApiId: !Ref flatDNAAPI
+      ResourceId: !Ref APIflatDNAResource
+      Integration:
+        Type: AWS
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${lambdaArn}/invocations"
+          - lambdaArn: !GetAtt "flatDNA.Arn"
+
+        IntegrationResponses:
+          - ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ''
+            StatusCode: '200'
+
+      MethodResponses:
+        - StatusCode: '200'
+          ResponseModels:
+            application/json: 'Empty'
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+
+  APIflatDNAOPTIONS:
+    Type: "AWS::ApiGateway::Method"
+    Properties:
+      RestApiId: !Ref flatDNAAPI
+      ResourceId: !Ref APIflatDNAResource
+      AuthorizationType: NONE
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        IntegrationResponses:
+          - ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ''
+            StatusCode: '200'
+        PassthroughBehavior: NEVER
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+      MethodResponses:
+        - ResponseModels:
+            application/json: Empty
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+          StatusCode: '200'
+
+  APIDeployment:
+    Type: 'AWS::ApiGateway::Deployment'
+    DependsOn:
+      - APIflatDNAPOST
+    Properties:
+      RestApiId: !Ref flatDNAAPI
+
+Outputs:
+  lambdaArn:
+    Value: !GetAtt "flatDNA.Arn"
