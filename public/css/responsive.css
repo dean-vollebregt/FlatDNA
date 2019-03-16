@@ -5,9 +5,6 @@ PAGE: SMALL DEVICE
 *********************************/
 @media screen and (max-width: 481px){
 
-  /********************************
-  PAGE: Home
-  *********************************/
   #intro{
     /*margin-left: 5em;*/
     text-align: center;
@@ -15,17 +12,13 @@ PAGE: SMALL DEVICE
     margin-right: 2em;
   }
 
-
-  /********************************
-  PAGE: Result
-  *********************************/
-  #gallery {
+  #roomResults {
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  #gallery li {
+  #roomResults li {
     background-color: #f5f5f5;
     float: none;
     font-size: 1em;
@@ -49,9 +42,6 @@ PAGE: SMALL DEVICE
     width: 50%;
   }
 
-  /********************************
-  PAGE: Home
-  *********************************/
   #resultNF{
     text-align: center;
     margin-left: 2em;
@@ -104,26 +94,19 @@ PAGE: SMALL DEVICE
     margin-bottom: 60px;
   }
 
-  /********************************
-  PAGE: Home
-  *********************************/
   #intro{
     text-align: center;
     margin-left: 2em;
     margin-right: 2em;
   }
 
-
-  /********************************
-  PAGE: RESULT
-  *********************************/
-  #gallery
+  #roomResults
   {
     padding: 0;
     list-style: none;
   }
 
-  #gallery li
+  #roomResults li
   {
     width: 80%;
     margin-left: 10%;
@@ -143,11 +126,21 @@ PAGE: SMALL DEVICE
   #houseStats {
     float: left;
     width:33%;
+    padding-top: 4%;
+  }
+
+  #houseStats p {
+    padding-left: 33%;
   }
 
   #housePrice {
     float: left;
     width:33%;
+    padding-top: 4%;
+  }
+
+  #housePrice p {
+    padding-left: 20%;
   }
 
   /********************************
