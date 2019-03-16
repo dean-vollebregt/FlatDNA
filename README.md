@@ -18,4 +18,5 @@ aws lambda update-function-code --function-name flatdna --s3-bucket flatdna-back
 
 # sync files to s3 for static content deployment
 cd public
-aws s3 sync . s3://flatdna/ --acl public-read
+
+aws s3 sync . s3://flatdna/ --acl public-read --exclude "*" --include "css*" --include "javascript*" --include "index.html"

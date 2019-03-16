@@ -5,21 +5,27 @@ async function getSuburbData() {
     try {
 
         let data = {
-            suburb: 'mile end',
-            postcode: 5031
+            "suburb": "mile end",
+            "postcode": "5031"
         };
 
-        let url = 'https://tcf90dktqi.execute-api.ap-southeast-2.amazonaws.com/prod/suburb';
+        const url = 'https://tcf90dktqi.execute-api.ap-southeast-2.amazonaws.com/prod/suburb';
 
-        let suburbData = await fetch(url, {
+        let rawSuburbData = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
             headers:{
                 'Content-Type': 'application/json'
-            }
+            },
+            mode: "cors"
         });
 
-        console.log(suburbData);
+        let suburbData = await rawSuburbData.json();
+
+        renderSuburbData(suburbData);
+
+       // console.log(suburbData);
+
 
     } catch (error) {
         console.error(error);

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <header>
-    <a href="index-old.html" id="logo">
+    <a href="index.html" id="logo">
         <h1>FlatDNA </h1>
         <h2>Share House Room Price Estimator</h2>
     </a>
@@ -42,28 +42,8 @@
 </div>
 
 <section>
-    <ul id="gallery">
-        {% for room in rankedRoomArray %}
-        <li>
-            <div id = "container">
-                <div id ="houseImage">
-                    <a href = "{{ room.url }}">
-                        <img src="{{ room.image }}" alt="">
-                    </a>
-                </div>
-                <div id ="houseStats">
-                    <p>Bedrooms: {{ room.flatmates}} </p>
-                    <p>Bathrooms: {{room.bathroom}} </p>
-                    <p>Bills Included: {{ room.billsIncluded | replace("0", "no") | replace("1", "yes") }} </p>
-                </div>
-                <div id ="housePrice">
-                    <p>Price: {{ room.price}} </p>
-                    <p>Estimated Price: {{ room.predictedPrice }} </p>
-                    <p id="difference">Difference: {{ room.difference }} </p>
-                </div>
-            </div>
-        </li>
-        {% endfor %}
+    <ul id="roomResults">
+
     </ul>
 </section>
 
@@ -71,8 +51,9 @@
 <footer>
     <p>&copy; 2018 Dean Enterprises.</p>
 </footer>
-<script src="javascript/style.js" type="text/javascript" charset="utf-8"></script>
 <script src="javascript/form.js" type="text/javascript" charset="utf-8"></script>
+<script src="javascript/render.js" type="text/javascript" charset="utf-8"></script>
+<script src="javascript/style.js" type="text/javascript" charset="utf-8"></script>
 <script src="javascript/suburb.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
