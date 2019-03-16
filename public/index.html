@@ -16,16 +16,14 @@
     </a>
     <nav>
         <ul class="navItems">
-            <li><a href="/">Home</a></li>
-            <li><a href="search">Search</a></li>
-            <li><a href="result">Result</a></li>
+            <li id="search"><a onclick="showForm()">Search</a></li>
         </ul>
     </nav>
 </header>
 <body>
 
 <div id="formDiv">
-    <form class= "searchForm" onsubmit="return false"  method="post">
+    <form id= "searchForm" onsubmit="return false"  method="post">
         <p>
             <label for="suburb">Suburb</label>
             <input id="suburb" name="suburb" type="text">
@@ -36,7 +34,7 @@
             <input id="postcode" name="postcode" type="text">
             <span class="formSpan">The postcode must be four digit's only</span>
 
-            <input type="submit" onclick="getSuburbData()"/>
+            <input type="submit" onclick="getSuburbData(); resetAndHideForm();"/>
         </p>
     </form>
 </div>

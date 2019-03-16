@@ -21,7 +21,8 @@ function renderSuburbData(suburbData){
             "<p>Estimated Price:" + room.predictedPrice + "</p>" +
             "<p id='difference'>Difference:" + room.difference + "</p>" +
             "</div>" +
-            "</div>";
+            "</div>"+
+            "<br>";
 
         document.getElementById("roomResults").appendChild(li);
     });

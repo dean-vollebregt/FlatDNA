@@ -30,10 +30,19 @@ function createListener(validator) {
   }
 }
 
+function resetAndHideForm(){
+  document.getElementById("searchForm").reset();
+  document.getElementById("formDiv").style.display="none";
+}
 
+function showForm() {
+  document.getElementById("formDiv").style.display="block";
+  document.getElementById("roomResults").innerHTML = "";
+}
 
 suburbInput.addEventListener("input", createListener(isValidSuburb));
-
 postcodeInput.addEventListener("input", createListener(isValidPostcode));
+
+
 
 
