@@ -1,15 +1,5 @@
-
-# Created by https://www.gitignore.io/api/node
-
-### Node ###
-
-
 # Dependency directories
 /node_modules/
-
-
-# devops file
-/devops.txt
 
 # Test Data
 /testData.js
@@ -17,7 +7,8 @@
 # Ignore workspace config file
 /.idea/
 
+# S3 Zip Files
+/flatdna-backend.zip
 
-# End of https://www.gitignore.io/api/node
 
 

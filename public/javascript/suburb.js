@@ -1,12 +1,12 @@
 async function getSuburbData() {
 
-    console.log("get suburb data invoked");
+    let suburb = document.getElementById('suburb').value;
+    let postcode = document.getElementById('postcode').value;
 
     try {
-
         let data = {
-            "suburb": "mile end",
-            "postcode": "5031"
+            "suburb": suburb,
+            "postcode": postcode
         };
 
         const url = 'https://tcf90dktqi.execute-api.ap-southeast-2.amazonaws.com/prod/suburb';
@@ -23,9 +23,6 @@ async function getSuburbData() {
         let suburbData = await rawSuburbData.json();
 
         renderSuburbData(suburbData);
-
-       // console.log(suburbData);
-
 
     } catch (error) {
         console.error(error);

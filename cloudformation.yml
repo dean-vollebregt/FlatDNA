@@ -69,7 +69,6 @@ Resources:
         Uri: !Sub
           - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${lambdaArn}/invocations"
           - lambdaArn: !GetAtt "flatDNA.Arn"
-
         IntegrationResponses:
           - ResponseParameters:
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
@@ -78,7 +77,6 @@ Resources:
             ResponseTemplates:
               application/json: ''
             StatusCode: '200'
-
       MethodResponses:
         - StatusCode: '200'
           ResponseModels:

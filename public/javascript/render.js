@@ -27,10 +27,3 @@ function renderSuburbData(suburbData){
     });
     updateColor();
 }
-
-
-
-
-
-
-//"<p>Bills Included:" + room.billsIncluded | replace("0", "no") | replace("1", "yes") }} </p>"
