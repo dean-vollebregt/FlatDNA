@@ -1,22 +1,27 @@
 #!/bin/bash
 
-# remove files
-rm Lambda/*.zip
+function sync_public_assets_dev() {
 
-# zip files for deployment
-cd Lambda
-zip -r ../flatdna-backend.zip *
+    cd /home/deanvollebregt/Desktop/flatdna/public
+    aws s3 sync . s3://www.flatdna-dev.com.au/
+}
 
-cd ../..
+function sync_public_assets_prod() {
 
-# sync files to s3 for Lambda deployment
-aws s3 sync . s3://flatdna-backend/ --acl private --exclude "*" --include "flatdna-backend.zip" --include "cloudformation.yml"
+    cd /home/deanvollebregt/Desktop/flatdna/public
+    aws s3 sync . s3://www.flatdna.com.au/
+}
 
-# update lambda functions
-aws lambda update-function-code --function-name flatDNA --s3-bucket flatdna-backend --s3-key flatdna-backend.zip
+function update_lambda() {
 
+    cd /home/deanvollebregt/Desktop/flatdna/lambda
+    zip -r ../lambda.zip *
 
-# sync files to s3 for static content deployment
-cd public
+    cd /home/deanvollebregt/Desktop/flatdna
+    aws s3 sync . s3://flatdna-backend/ --acl private --exclude "*" --include "cloudformation*" --include "lambda.zip"
 
-aws s3 sync . s3://flatdna/ --acl public-read --exclude "*" --include "css*" --include "javascript*" --include "index.html"
+    cd /home/deanvollebregt/Desktop/flatdna
+    rm -rf lambda.zip
+
+    aws lambda update-function-code --function-name flatDNA --s3-bucket flatdna-backend --s3-key lambda.zip
+}
