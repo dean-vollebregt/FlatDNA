@@ -1,6 +1,8 @@
 #!/bin/bash
 
 function sync_public_assets_dev() {
+    cd /home/deanvollebregt/Desktop/flatdna/frontend
+    npm run-script build
 
     cd /home/deanvollebregt/Desktop/flatdna/frontend/build
     aws s3 sync . s3://www.flatdna-dev.com.au/
