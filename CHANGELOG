@@ -2,6 +2,7 @@
 
 ### Added
 - Add Node.js Axios package for data fetching
+- Use axios to retrieve test images
 
 ## [0.0.1] - 04-08-2019
 
