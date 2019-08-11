@@ -1,18 +1,17 @@
 'use strict';
 console.log('Loading function');
-const fmData = require('services/flatmatesData.js');
-const OLS = require('services/ordinaryLeastSquares');
-const prediction = require('services/predictPriceAndRank');
+
+const flatmatesData = require('services/flatmatesData.js').flatmatesData;
+const parseHTML = require('services/flatmatesData.js').parseHTML;
+const ordinaryLeastSquares = require('services/ordinaryLeastSquares').ordinaryLeastSquares;
+const predictPriceAndRank = require('services/predictPriceAndRank').predictPriceAndRank;
 
 exports.handler = async function(event, context) {
     try {
-        //console.log(event.suburb + ' ' + event.postcode);
-        let rawHTML = await fmData.flatmatesData(event.suburb, event.postcode);
-        let listOfRoomObjects = fmData.parseHTML(rawHTML);
-        let mlr = OLS.ordinaryLeastSquares(listOfRoomObjects);
-        let rankedRooms = prediction.predictPriceAndRank(mlr, listOfRoomObjects);
-
-        console.log(rankedRooms);
+        let rawHTML = await flatmatesData(event.suburb, event.postcode);
+        let listOfRoomObjects = parseHTML(rawHTML);
+        let mlr = ordinaryLeastSquares(listOfRoomObjects);
+        let rankedRooms = predictPriceAndRank(mlr, listOfRoomObjects);
         return rankedRooms;
 
     } catch(err){
