@@ -2,6 +2,12 @@
 
 - https://www.flatdna.com.au
 
+***To run locally***
+
+- cd lambda
+
+- npm install
+
 ***To sync public assets to production***
 
 - cd public
