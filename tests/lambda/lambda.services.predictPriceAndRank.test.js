@@ -1,7 +1,7 @@
-const prediction = require('../../../services/predictPriceAndRank');
-const OLS = require('../../../services/ordinaryLeastSquares');
-const listOfRoomObjects = require('../../../tests/unit/server/server.test.data').listOfRoomObjects;
-const correctTestRankedRooms = require('../../../tests/unit/server/server.test.data').correctTestRankedRooms;
+const prediction = require('../../lambda/services/predictPriceAndRank');
+const OLS = require('../../lambda/services/ordinaryLeastSquares');
+const listOfRoomObjects = require('./lambda.test.data').listOfRoomObjects;
+const correctTestRankedRooms = require('./lambda.test.data').correctTestRankedRooms;
 const expect = require('chai').expect;
 
 describe('predictPriceAndRank', function() {
