@@ -1,11 +1,8 @@
+# Editor file
+.idea
+
 # Dependency directories
-/node_modules/
-
-# Test Data
-/testData.js
-
-# Ignore workspace config file
-/.idea/
+**/node_modules
 
 # S3 Zip Files
 flatdna-backend.zip
