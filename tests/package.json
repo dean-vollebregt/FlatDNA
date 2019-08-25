@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test": "mocha ../tests/lambda/*",
+    "preinstall": "npm i -g mocha"
+  },
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}

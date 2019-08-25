@@ -1,6 +1,6 @@
-const OLS = require('../../../services/ordinaryLeastSquares');
+const OLS = require('../../lambda/services/ordinaryLeastSquares');
 const expect = require('chai').expect;
-const listOfRoomObjects  = require('../../../tests/unit/server/server.test.data').listOfRoomObjects;
+const listOfRoomObjects  = require('./lambda.test.data').listOfRoomObjects;
 
 describe('ordinaryLeastSquares', function() {
 
